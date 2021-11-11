@@ -1,0 +1,38 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package ir.imancn.messenger;
+
+service MessageService {
+  rpc send (MessageInfo) returns (MessageResponse);
+  rpc getMessages (Chat) returns (Messages);
+  rpc openChats (UserInfo) returns (Users);
+}
+
+/// send
+message MessageInfo {
+  string fromId = 1;
+  string toId = 2;
+  string body = 3;
+  string date = 4;
+}
+message MessageResponse {
+  int32 status = 1;
+}
+
+/// getMessages
+message Chat {
+  string fromId = 1;
+  string toId = 2;
+}
+message Messages {
+  repeated MessageInfo message = 1;
+}
+
+/// openChats
+message UserInfo {
+  string userId = 1;
+}
+
+message Users {
+  repeated string user = 1;
+}
